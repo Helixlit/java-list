@@ -70,6 +70,45 @@ public class Knoten
         return rekursivGetDatenelement(knoten.getNachfolger(), ++index);
     }
 
+    public Knoten endeEntfernen()
+    {
+        if (this.getNachfolger() == null)
+        {
+            this.setNachfolger(null);
+            return null;
+        }
+        this.nachfolger = this.nachfolger.endeEntfernen();
+        return this;
+    }
 
-    
+    public void knotenEntfernen(Datenelement datenelement)
+    {
+        if (this.nachfolger.datenelement.equals(datenelement)) this.nachfolger = this.nachfolger.nachfolger;
+        this.nachfolger.knotenEntfernen(datenelement);
+    }
+
+    public void hintenEinfuegen(Datenelement datenelement)
+    {
+        if (this.nachfolger == null) this.nachfolger = new Knoten(++this.index, datenelement);
+        this.nachfolger.hintenEinfuegen(datenelement);
+    }
+
+    public int laenge()
+    {
+        if (this.nachfolger == null) return 1;
+        return this.nachfolger.laenge()+1;
+    }
+
+    public void einfuegenVor(Datenelement datenelement, Datenelement neuDatenelement)
+    {
+        if (this.datenelement.equals(datenelement))
+        {
+            Knoten knoten = new Knoten(++this.index, neuDatenelement);
+            knoten.setNachfolger(this.nachfolger);
+            this.nachfolger = knoten;
+            return;
+        }
+        this.nachfolger.einfuegenVor(datenelement, neuDatenelement);
+    }
+
 }

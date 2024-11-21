@@ -121,4 +121,9 @@ public class Warteschlange
         knoten.rekursivInkrementiereIndex();
     }
 
+    public void EinfuegenVor()
+    {
+
+    }
+
 }

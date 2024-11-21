@@ -115,9 +115,4 @@ public class Warteschlange
         this.anfang.einfuegenVor(datenelement, neuesDatenelement);
     }
 
-    public void EinfuegenVor()
-    {
-
-    }
-
 }

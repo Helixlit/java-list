@@ -1,39 +1,17 @@
 public class Warteschlange
 {
     private Knoten anfang;
-    private Knoten ende;
 
     public Warteschlange()
     {
         this.anfang = null;
-        this.ende   = null;
-    }
-
-    public void hintenEinfuegen(Knoten e)
-    {
-        if (this.anfang == null)
-        {
-            this.anfang = e;
-            this.ende   = e;
-            return;
-        }
-        else
-        {
-            this.ende.setNachfolger(e);
-        }
-
-        this.ende = e;
     }
 
     public void hintenEinfuegen(Datenelement datenelement)
     {
-        int index;
-        if (this.ende == null) index = 0;
-        else index = ende.getIndex() + 1;
+        if (anfang == null) return;
+        this.anfang.hintenEinfuegen(datenelement);
 
-        Knoten e = new Knoten(index, datenelement);
-
-        hintenEinfuegen(e);
     }
 
     public void einfuegen(int index, Datenelement datenelement)
@@ -62,23 +40,15 @@ public class Warteschlange
     public Datenelement vorneEntfernen()
     {
         if (this.anfang == null) return null;
-
-        Knoten element = this.anfang;
+        Datenelement datenelement = anfang.getDatenelement();
         this.anfang = anfang.getNachfolger();
-        
-        if (this.anfang == null) this.ende = element;
-
-        else
-        {
-            this.anfang.rekursivDekrementiereIndex();
-        }
-
-        return element.getDatenelement();
+        return datenelement;
     }
 
     public int laenge()
     {
-        return this.ende.getIndex() + 1;
+        if (this.anfang == null) return 0;
+        return anfang.laenge();
     }
 
     public void ausgeben()
@@ -102,6 +72,12 @@ public class Warteschlange
         
     }
 
+    public Datenelement[] datenGeben()
+    {
+        Knoten[] konten = new Knoten[laenge()];
+        return null;
+    }
+
     public Datenelement datenGeben(int i)
     {
         Knoten k = this.anfang;
@@ -119,6 +95,24 @@ public class Warteschlange
         knoten.setNachfolger(this.anfang);
         this.anfang = knoten;
         knoten.rekursivInkrementiereIndex();
+    }
+
+    public void endeEntfernen()
+    {
+        if (anfang == null) return;
+        anfang.endeEntfernen();
+    }
+
+    public void knotenEntfernen(Datenelement datenelement)
+    {
+        if (this.anfang == null) return;
+        this.anfang.knotenEntfernen(datenelement);
+    }
+
+    public void einfuegenVor(Datenelement datenelement, Datenelement neuesDatenelement)
+    {
+        if (this.anfang == null) return;
+        this.anfang.einfuegenVor(datenelement, neuesDatenelement);
     }
 
     public void EinfuegenVor()

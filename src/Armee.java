@@ -5,24 +5,17 @@ public class Armee
     public Armee()
     {
         Warteschlange warteschlange = new Warteschlange();
-        Ritter max = new Ritter(Max)
-        warteschlange.hintenEinfuegen(new Ritter("Main"));
-        warteschlange.hintenEinfuegen(new Ritter("Alfred"));
-        warteschlange.hintenEinfuegen(max);
-        warteschlange.hintenEinfuegen(new Ritter("Jim"));
+        warteschlange.hintenEinfuegen(new Ritter("Maincharakter"));
 
-        warteschlange.einfuegen(1, new Ritter("Benjamin"));
+        warteschlange.hintenEinfuegen(new Ritter("Apo Red"));
 
+        warteschlange.hintenEinfuegen(new Ritter("Test 1"));
 
         warteschlange.ausgeben();
 
+        warteschlange.sotiertEinfuegen(new Ritter("Benjamin"));
 
-
-        warteschlange.endeEntfernen();
-    
-        
         warteschlange.ausgeben();
-
     }
     
 }

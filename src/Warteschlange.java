@@ -9,32 +9,13 @@ public class Warteschlange
 
     public void hintenEinfuegen(Datenelement datenelement)
     {
-        if (anfang == null) return;
+        if (this.anfang == null)
+        {
+            this.anfang = new Knoten(0, datenelement);
+            return;
+        }
         this.anfang.hintenEinfuegen(datenelement);
 
-    }
-
-    public void einfuegen(int index, Datenelement datenelement)
-    {
-        Knoten eNeu = new Knoten(-1, datenelement);
-
-        Knoten e = this.anfang;
-        int i = this.anfang.getIndex();
-        while (i != index-1)
-        {
-            if (e.getNachfolger() == null)
-            {
-                System.out.println("Einfuegen nicht moeglich! Index nicht in der Liste!");
-            } 
-            e = e.getNachfolger();
-            i = e.getIndex();
-        }
-
-        eNeu.setIndex(i + 1);
-        eNeu.setNachfolger(e.getNachfolger());
-        e.setNachfolger(eNeu);
-
-        eNeu.getNachfolger().rekursivInkrementiereIndex();
     }
 
     public Datenelement vorneEntfernen()
@@ -113,6 +94,16 @@ public class Warteschlange
     {
         if (this.anfang == null) return;
         this.anfang.einfuegenVor(datenelement, neuesDatenelement);
+    }
+
+    public void sotiertEinfuegen(Datenelement datenelement)
+    {
+        if (this.anfang == null)
+        {
+            this.anfang = new Knoten(0, datenelement);
+            return;
+        }
+        this.anfang = this.anfang.sortiertEinfuegen(datenelement);
     }
 
 }

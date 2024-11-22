@@ -11,5 +11,9 @@ public class Ritter implements Datenelement {
         return this.name;
     }
 
-    
+    @Override
+    public boolean istKleinerAls(Datenelement datenelement)
+    {
+        return this.name.compareTo(datenelement.informationAusgeben()) < 0;
+    }
 }

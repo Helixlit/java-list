@@ -26,7 +26,7 @@ public class Knoten
 
     public int getIndex()
     {
-        return index;
+        return this.index;
     }
 
     public void setIndex(int index)
@@ -89,7 +89,11 @@ public class Knoten
 
     public void hintenEinfuegen(Datenelement datenelement)
     {
-        if (this.nachfolger == null) this.nachfolger = new Knoten(++this.index, datenelement);
+        if (this.nachfolger == null)
+        {
+            this.nachfolger = new Knoten(this.index+1, datenelement);
+            return;
+        }
         this.nachfolger.hintenEinfuegen(datenelement);
     }
 
@@ -103,12 +107,26 @@ public class Knoten
     {
         if (this.datenelement.equals(datenelement))
         {
-            Knoten knoten = new Knoten(++this.index, neuDatenelement);
+            Knoten knoten = new Knoten(this.index-1, neuDatenelement);
             knoten.setNachfolger(this.nachfolger);
             this.nachfolger = knoten;
             return;
         }
         this.nachfolger.einfuegenVor(datenelement, neuDatenelement);
+    }
+
+    public Knoten sortiertEinfuegen(Datenelement datenelement)
+    {
+        if (this.datenelement.istKleinerAls(datenelement))
+        {
+            this.nachfolger = this.nachfolger.sortiertEinfuegen(datenelement);
+            return this;
+        }
+
+        Knoten knoten = new Knoten(this.index, datenelement);
+        knoten.setNachfolger(this);
+        this.rekursivInkrementiereIndex();
+        return knoten;
     }
 
 }

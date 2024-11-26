@@ -129,4 +129,11 @@ public class Knoten
         return knoten;
     }
 
+    public Knoten sortieren()
+    {
+        if (nachfolger == null) return this;
+
+        if (this.datenelement.istKleinerAls(nachfolger.getDatenelement())) nachfolger = nachfolger.sortieren();
+    }
+
 }

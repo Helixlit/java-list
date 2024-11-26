@@ -106,4 +106,11 @@ public class Warteschlange
         this.anfang = this.anfang.sortiertEinfuegen(datenelement);
     }
 
+    public void sortieren()
+    {
+        if(anfang == null) return;
+
+        for (int i = 0; i < this.laenge(); i++) anfang.sortieren();
+    }
+
 }

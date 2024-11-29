@@ -1,139 +1,79 @@
-public class Knoten
+public class Knoten extends Listenelement
 {
-    private Knoten nachfolger;
-    private int index;
+    private Listenelement nachfolger;
     private Datenelement datenelement;
 
-    public Knoten(int index, Datenelement datenelement)
+    public Knoten(Datenelement datenelement, int index)
     {
-        this.index = index;
         this.datenelement = datenelement;
-    }
-
-    public Knoten getNachfolger()
-    {
-        return nachfolger;
-    }
-
-    public void setNachfolger(Knoten nachfolger)
-    {
-        this.nachfolger = nachfolger;
-    }
-
-    public Datenelement getDatenelement() { return this.datenelement; } 
-
-    public void setDatenelement(Datenelement datenelement) { this.datenelement = datenelement; }
-
-    public int getIndex()
-    {
-        return this.index;
-    }
-
-    public void setIndex(int index)
-    {
         this.index = index;
     }
 
-    public void rekursivInkrementiereIndex()
+    Datenelement entfernen()
     {
-        rekursivInkrementiereIndex(this);
+
+    }
+    
+    Datenelement entfernen(Datenelement datenelement)
+    {
+        return null;
     }
 
-    private void rekursivInkrementiereIndex(Knoten knoten)
+    Datenelement entfernen(int index)
     {
-        knoten.index++;
-        if (knoten.nachfolger == null) return;
-        rekursivInkrementiereIndex(knoten.nachfolger);
-    } 
-
-    public void rekursivDekrementiereIndex()
-    {
-        rekursivDekrementiereIndex(this);
+        return null;
     }
 
-    private void rekursivDekrementiereIndex(Knoten knoten)
+    void einfuegenVor(Datenelement datenelement)
     {
-        knoten.index--;
-        if (knoten.nachfolger == null) return;
-        rekursivDekrementiereIndex(knoten.nachfolger);
+        return;
     }
 
-    public String informationAusgeben()
+    void einfuegenNach(Datenelement datenelement)
     {
-        return this.datenelement.informationAusgeben();
+        return;
     }
 
-    public Datenelement rekursivGetDatenelement(Knoten knoten, int index)
+    Knoten einfuegenHinten(Datenelement datenelement)
     {
-        if (knoten.getIndex() == index) return knoten.getDatenelement();
-        if (knoten.getNachfolger() == null) return null;
-        return rekursivGetDatenelement(knoten.getNachfolger(), ++index);
-    }
-
-    public Knoten endeEntfernen()
-    {
-        if (this.getNachfolger() == null)
-        {
-            this.setNachfolger(null);
-            return null;
-        }
-        this.nachfolger = this.nachfolger.endeEntfernen();
+        this.nachfolger.einfuegenHinten(datenelement);
         return this;
     }
 
-    public void knotenEntfernen(Datenelement datenelement)
+    int gebeLaenge()
     {
-        if (this.nachfolger.datenelement.equals(datenelement)) this.nachfolger = this.nachfolger.nachfolger;
-        this.nachfolger.knotenEntfernen(datenelement);
+        return gebeLaenge() + 1;
     }
 
-    public void hintenEinfuegen(Datenelement datenelement)
+    void dekrementiere()
     {
-        if (this.nachfolger == null)
-        {
-            this.nachfolger = new Knoten(this.index+1, datenelement);
-            return;
-        }
-        this.nachfolger.hintenEinfuegen(datenelement);
+        return;
     }
 
-    public int laenge()
+    void inkrementiere()
     {
-        if (this.nachfolger == null) return 1;
-        return this.nachfolger.laenge()+1;
+        return;
     }
 
-    public void einfuegenVor(Datenelement datenelement, Datenelement neuDatenelement)
+    Datenelement gebeDaten(Datenelement vorgaenger)
     {
-        if (this.datenelement.equals(datenelement))
-        {
-            Knoten knoten = new Knoten(this.index-1, neuDatenelement);
-            knoten.setNachfolger(this.nachfolger);
-            this.nachfolger = knoten;
-            return;
-        }
-        this.nachfolger.einfuegenVor(datenelement, neuDatenelement);
+        return gebeDaten(this.datenelement);
     }
 
-    public Knoten sortiertEinfuegen(Datenelement datenelement)
+    Datenelement gebeDaten(int index)
     {
-        if (this.datenelement.istKleinerAls(datenelement))
-        {
-            this.nachfolger = this.nachfolger.sortiertEinfuegen(datenelement);
-            return this;
-        }
-
-        Knoten knoten = new Knoten(this.index, datenelement);
-        knoten.setNachfolger(this);
-        this.rekursivInkrementiereIndex();
-        return knoten;
+        if(this.index == index) return this.datenelement;
+        return this.nachfolger.gebeDaten(index);
     }
 
-    public Knoten sortieren()
+    public Datenelement gebeDatenelement()
     {
-        if (nachfolger == null) return this;
+        return this.datenelement;
+    }
 
-        if (this.datenelement.istKleinerAls(nachfolger.getDatenelement())) nachfolger = nachfolger.sortieren();
+    public int gebeIndex()
+    {
+        return this.index;
     }
 
 }

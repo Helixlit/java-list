@@ -1,10 +1,10 @@
 public class Armee
 {
-    Warteschlange warteschlange;
+    Liste warteschlange;
 
     public Armee()
     {
-        Warteschlange warteschlange = new Warteschlange();
+        Liste warteschlange = new Liste();
         warteschlange.hintenEinfuegen(new Ritter("Maincharakter"));
 
         warteschlange.hintenEinfuegen(new Ritter("Apo Red"));

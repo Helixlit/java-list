@@ -2,6 +2,7 @@ public abstract class Listenelement
 {
     int index;
 
+    abstract Datenelement entfernenVorne(Liste liste);
     abstract Datenelement entfernenHinten(Knoten vorvorgaenger, Knoten vorgaenger);
     abstract Datenelement entfernen(Datenelement datenelement);
     abstract Datenelement entfernen(int index);

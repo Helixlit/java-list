@@ -17,7 +17,7 @@ public class App
         liste.einfuegenHinten(new Ritter("Lean"));
         liste.einfuegenHinten(new Ritter("John"));
         liste.ausgeben();
-        liste.entfernenHinten();
+        liste.entfernenVorne();
         liste.ausgeben();
     }
 }

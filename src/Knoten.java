@@ -10,6 +10,13 @@ public class Knoten extends Listenelement
         this.nachfolger = nachfloger;
     }
 
+    Datenelement entfernenVorne(Liste liste)
+    {
+        this.nachfolger.dekrementiere();
+        liste.setzeAnfang(this.nachfolger);
+        return this.datenelement;
+    }
+
     Datenelement entfernenHinten(Knoten vorvorgaenger, Knoten vorgaenger)
     {
         return this.nachfolger.entfernenHinten(vorgaenger, this); 
@@ -48,12 +55,14 @@ public class Knoten extends Listenelement
 
     void dekrementiere()
     {
-        return;
+        this.index--;
+        this.nachfolger.dekrementiere();
     }
 
     void inkrementiere()
     {
-        return;
+        this.index++;
+        this.nachfolger.inkrementiere();
     }
 
     Datenelement gebeDaten(Datenelement vorgaenger)

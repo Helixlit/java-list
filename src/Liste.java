@@ -40,4 +40,14 @@ public class Liste
 
         return datenelement;
     }
+
+    public Datenelement entfernenVorne()
+    {
+        return this.anfang.entfernenVorne(this);
+    }
+
+    public void setzeAnfang(Listenelement listenelement)
+    {
+        this.anfang = listenelement;
+    }
 }

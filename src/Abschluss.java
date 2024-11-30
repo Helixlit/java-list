@@ -5,6 +5,11 @@ public class Abschluss extends Listenelement
         this.index = index;
     }
 
+    Datenelement entfernenVorne(Liste liste)
+    {
+        return null;
+    }
+
     Datenelement entfernenHinten(Knoten vorvorgaenger, Knoten vorgaenger)
     {
         if (vorvorgaenger == null) return null;
@@ -46,12 +51,12 @@ public class Abschluss extends Listenelement
 
     void dekrementiere()
     {
-        return;
+        this.index--;
     }
 
     void inkrementiere()
     {
-        return;
+        this.index++;
     }
 
     Datenelement gebeDaten(Datenelement vorgaenger)

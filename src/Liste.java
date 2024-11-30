@@ -1,74 +1,43 @@
+import java.util.logging.Logger;
+
 public class Liste
 {
-    private Knoten anfang;
+    private Listenelement anfang;
+
+    final Logger logger = LoggerFactory.getLogger(Liste.class);
 
     public Liste()
     {
-        this.anfang = null;
+        this.anfang = new Abschluss(0);
     }
 
-    public ausgeben()
+    public void ausgeben()
     {
-        Listenelement element = this.anfang;
-        while(element instanceof Knoten)
-        {
-            System.out.println(element.gebeDatenelement()+" at index: " + element.getIndex());
-        }
+        System.out.println("Liste:");
+        this.anfang.ausgeben(); 
     }
 
-    Datenelement entfernen(Datenelement vorgaenger)
+    public int gebeLaenge()
     {
-        return vorgaenger;
-    }
-    
-    Datenelement entfernen(Datenelement datenelement)
-    {
-        return null;
+        return this.anfang.gebeLaenge();
     }
 
-    Datenelement entfernen(int index)
+    public void einfuegenHinten(Datenelement datenelement)
     {
-        return null;
+        this.anfang = this.anfang.einfuegenHinten(datenelement);
     }
 
-    void einfuegenVor(Datenelement datenelement)
+    public Datenelement entfernenHinten()
     {
-        return;
-    }
+        Knoten knoten = new Knoten(null, -1, null);
 
-    void einfuegenNach(Datenelement datenelement)
-    {
-        return;
-    }
+        Datenelement datenelement = this.anfang.entfernenHinten(null, knoten);
 
-    Knoten einfuegenHinten(Datenelement datenelement)
-    {
-        return new Knoten(datenelement, this.index);
-    }
+        if (knoten.gebeNachfolger() instanceof Abschluss) this.anfang = knoten.gebeNachfolger();
 
-    int  gebeLaenge()
-    {
-        return 0;
-    }
+        if (datenelement == null) this.logger.warning("Kein Knoten zum entfernen vorhanden!");
+        else this.logger.info(datenelement+" wurde entfernt.");
 
-    void dekrementiere()
-    {
-        return;
+        return datenelement;
     }
-
-    void inkrementiere()
-    {
-        return;
-    }
-
-    Datenelement gebeDaten()
-    {
-        return null;
-    }
-
-    Datenelement gebeDaten(int index)
-    {
-        return null;
-    }
-   
 }

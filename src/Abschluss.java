@@ -1,9 +1,16 @@
-
 public class Abschluss extends Listenelement
 {
-    Datenelement entfernen(Datenelement vorgaenger)
+    public Abschluss(int index)
     {
-        return vorgaenger;
+        this.index = index;
+    }
+
+    Datenelement entfernenHinten(Knoten vorvorgaenger, Knoten vorgaenger)
+    {
+        if (vorvorgaenger == null) return null;
+        vorvorgaenger.setzeNachfolger(this);
+        this.index--;
+        return vorgaenger.gebeDatenelement();
     }
     
     Datenelement entfernen(Datenelement datenelement)
@@ -28,7 +35,8 @@ public class Abschluss extends Listenelement
 
     Knoten einfuegenHinten(Datenelement datenelement)
     {
-        return new Knoten(datenelement, this.index);
+        this.index++;
+        return new Knoten(datenelement, this.index-1, this);
     }
 
     int  gebeLaenge()
@@ -63,7 +71,13 @@ public class Abschluss extends Listenelement
 
     public int gebeIndex()
     {
-        return 0;
+        return this.index;
+    }
+
+    void ausgeben()
+    {
+        System.out.println("Index: "+this.index+" Abschluss");
+        
     }
     
 }

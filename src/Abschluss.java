@@ -28,20 +28,15 @@ public class Abschluss extends Listenelement
         return null;
     }
 
-    void einfuegenVor(Datenelement datenelement)
-    {
-        return;
-    }
-
-    void einfuegenNach(Datenelement datenelement)
-    {
-        return;
-    }
-
     Knoten einfuegenHinten(Datenelement datenelement)
     {
         this.index++;
         return new Knoten(datenelement, this.index-1, this);
+    }
+
+    Knoten sortiertEinfuegen(Datenelement datenelement)
+    {
+        return new Knoten(datenelement, this.index++, this);
     }
 
     int  gebeLaenge()

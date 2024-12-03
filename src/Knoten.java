@@ -1,3 +1,5 @@
+
+
 public class Knoten extends Listenelement
 {
     private Listenelement nachfolger;
@@ -32,11 +34,6 @@ public class Knoten extends Listenelement
         return null;
     }
 
-    void einfuegenVor(Datenelement datenelement)
-    {
-        return;
-    }
-
     void einfuegenNach(Datenelement datenelement)
     {
         return;
@@ -45,6 +42,18 @@ public class Knoten extends Listenelement
     Knoten einfuegenHinten(Datenelement datenelement)
     {
         this.nachfolger = this.nachfolger.einfuegenHinten(datenelement);
+        return this;
+    }
+
+    Knoten sortiertEinfuegen(Datenelement datenelement)
+    {
+        if (this.datenelement.istKleinerAls(datenelement))
+            this.nachfolger = this.nachfolger.sortiertEinfuegen(datenelement);
+        else 
+        {
+            this.inkrementiere();
+            return new Knoten(datenelement, this.index-1, this);
+        }
         return this;
     }
 

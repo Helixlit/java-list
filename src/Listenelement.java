@@ -7,9 +7,10 @@ public abstract class Listenelement
     abstract Datenelement entfernen(Datenelement datenelement);
     abstract Datenelement entfernen(int index);
 
-    abstract void einfuegenVor(Datenelement datenelement);
     abstract void einfuegenNach(Datenelement datenelement);
     abstract Knoten einfuegenHinten(Datenelement datenelement);
+
+    abstract Knoten sortiertEinfuegen(Datenelement datenelement);
 
     abstract int  gebeLaenge();
 

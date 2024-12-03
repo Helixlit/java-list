@@ -18,6 +18,8 @@ public class App
         liste.einfuegenHinten(new Ritter("John"));
         liste.ausgeben();
         liste.entfernenVorne();
+        liste.sortiertEinfuegen(new Ritter("Alpha"));
+        liste.sortiertEinfuegen(new Ritter("Omega"));
         liste.ausgeben();
     }
 }
